@@ -15,7 +15,9 @@ date modified : 24-01-2025
     <script defer type="module">
       import animalBuilder from  "./app/animals/index.js";
 
-      const animal = animalBuilder();
+      const params = new URL(document.location).searchParams;
+      const name = params.get("name");
+      const animal = animalBuilder(name);
       
       document.querySelector('main div h1').innerHTML = animal.description;
       const container = document.querySelector('main .container');
@@ -44,7 +46,7 @@ date modified : 24-01-2025
           <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
             <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
           </a>
-          <span class="mb-3 mb-md-0 text-body-secondary">© <span id="copyrightYear"></span> Anirudh Vakkayil Anil</span>
+          <span class="mb-3 mb-md-0 text-body-secondary">© <span id="copyrightYear"></span> Adam Kunz, Inc</span>
         </div>
     
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
