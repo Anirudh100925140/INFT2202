@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
             <a class="navbar-brand text-light" href="index.html">Web Shop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -29,11 +29,11 @@
 
     <!-- Product List Section -->
     <div class="container mt-4">
-        <h1 class="text-center">Our Products</h1>
+        <h1 class="text-center ">Our Products</h1>
         
         <!-- Add items per page selector -->
         <div class="row mb-3">
-            <div class="col-md-6">
+            <div class="col-md-6 ">
                 <label for="itemsPerPage" class="form-label">Items per page:</label>
                 <select id="itemsPerPage" class="form-select w-auto">
                     <option value="5">5</option>
@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <table id="product-list" class="table table-striped">
+        <table id="product-list" class="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -55,20 +55,53 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <tr class="table-primary">
+                    <td>Product 1</td>
+                    <td>High-quality item</td>
+                    <td>50</td>
+                    <td>$20.00</td>
+                    <td><button class="btn btn-info">Action</button></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>Product 2</td>
+                    <td>Mid-range item</td>
+                    <td>30</td>
+                    <td>$15.00</td>
+                    <td><button class="btn btn-info">Action</button></td>
+                </tr>
+                <tr class="table-success">
+                    <td>Product 3</td>
+                    <td>Premium quality item</td>
+                    <td>100</td>
+                    <td>$50.00</td>
+                    <td><button class="btn btn-info">Action</button></td>
+                </tr>
+                <tr class="table-danger">
+                    <td>Product 4</td>
+                    <td>Low stock item</td>
+                    <td>5</td>
+                    <td>$10.00</td>
+                    <td><button class="btn btn-info">Action</button></td>
+                </tr>
+                <tr class="table-warning">
+                    <td>Product 5</td>
+                    <td>Budget-friendly item</td>
+                    <td>80</td>
+                    <td>$8.00</td>
+                    <td><button class="btn btn-info">Action</button></td>
+                </tr>
             </tbody>
         </table>
 
-        <!-- Pagination controls -->
+        
         <nav aria-label="Product pagination">
             <ul class="pagination justify-content-center" id="pagination">
-                <!-- Pagination buttons will be dynamically inserted here -->
+                
             </ul>
         </nav>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-center py-3 mt-4 bg-dark text-light">
+    <footer class="text-center py-3 mt-4 bg-success text-light">
         <p>&copy; <span id="year"></span> Anirudh </p>
     </footer>
 
