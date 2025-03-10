@@ -1,126 +1,69 @@
-// src/client/app/products/list.js
-import ProductService from './product.mock.service.js';
-import Product from './product.js';
-
-class ProductList {
-    constructor() {
-        this.products = ProductService.getProducts();
-        this.currentPage = 1;
-        this.itemsPerPage = 10;
-        this.productList = document.querySelector('#product-list tbody');
-        this.paginationElement = document.getElementById('pagination');
-        this.itemsPerPageSelect = document.getElementById('itemsPerPage');
-
-        this.setupEventListeners();
-        this.render();
-    }
-
-    setupEventListeners() {
+// Fetch data from API
+fetch('https://inft2202-server.onrender.com/api/products')  
+  .then(response => response.json())
+  .then(data => {
+    const productList = document.getElementById('product-list').getElementsByTagName('tbody')[0];
+    const pagination = document.getElementById('pagination');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    
+    // Hide loading spinner once data is fetched
+    loadingSpinner.style.display = 'none';
+    
+    // Function to render products
+    function renderProducts(products) {
+      productList.innerHTML = '';  // Clear existing products
+      products.forEach(product => {
+        const row = document.createElement('tr');
         
-        this.itemsPerPageSelect.addEventListener('change', (e) => {
-            this.itemsPerPage = parseInt(e.target.value);
-            this.currentPage = 1; 
-            this.render();
-        });
-
-        
-        this.itemsPerPage = parseInt(this.itemsPerPageSelect.value);
-    }
-
-    getTotalPages() {
-        return Math.ceil(this.products.length / this.itemsPerPage);
-    }
-
-    getCurrentPageProducts() {
-        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-        const endIndex = startIndex + this.itemsPerPage;
-        return this.products.slice(startIndex, endIndex);
-    }
-
-    renderProducts() {
-        const currentProducts = this.getCurrentPageProducts();
-
-        if (this.products.length === 0) {
-            this.productList.innerHTML = '<tr><td colspan="5" class="text-center">No products available.</td></tr>';
-            return;
-        }
-
-        this.productList.innerHTML = '';
-        currentProducts.forEach(product => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${product.name}</td>
-                <td>${product.description}</td>
-                <td>${product.stock}</td>
-                <td>$${product.price.toFixed(2)}</td>
-                <td>
-                    <button class="btn btn-warning btn-sm" onclick="editProduct('${product.id}')">Update</button>
-                    <button class="btn btn-danger btn-sm" onclick="deleteProduct('${product.id}')">Delete</button>
-                </td>
-            `;
-            this.productList.appendChild(row);
-        });
-    }
-
-    renderPagination() {
-        const totalPages = this.getTotalPages();
-        let paginationHTML = '';
-
-       
-        paginationHTML += `
-            <li class="page-item ${this.currentPage === 1 ? 'disabled' : ''}">
-                <a class="page-link" href="#" data-page="${this.currentPage - 1}">Previous</a>
-            </li>
+        // adding table with data 
+        row.innerHTML = `
+          <td>${product.name}</td>
+          <td>${product.description ? product.description : 'No description'}</td>
+          <td>${product.stock}</td>
+          <td>$${product.price}</td>
+          <td><button class="btn btn-info">Action</button></td>
         `;
-
         
-        for (let i = 1; i <= totalPages; i++) {
-            paginationHTML += `
-                <li class="page-item ${i === this.currentPage ? 'active' : ''}">
-                    <a class="page-link" href="#" data-page="${i}">${i}</a>
-                </li>
-            `;
-        }
-
-        
-        paginationHTML += `
-            <li class="page-item ${this.currentPage === totalPages ? 'disabled' : ''}">
-                <a class="page-link" href="#" data-page="${this.currentPage + 1}">Next</a>
-            </li>
+        productList.appendChild(row);
+      });
+    }
+    
+    // Function to render pagination
+    function renderPagination(page, pages) {
+      pagination.innerHTML = '';  // Clear existing pagination
+      for (let i = 1; i <= pages; i++) {
+        const pageItem = document.createElement('li');
+        pageItem.classList.add('page-item');
+        pageItem.innerHTML = `
+          <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
         `;
-
-        this.paginationElement.innerHTML = paginationHTML;
-
-        
-        this.paginationElement.querySelectorAll('.page-link').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const newPage = parseInt(e.target.dataset.page);
-                if (newPage >= 1 && newPage <= totalPages) {
-                    this.currentPage = newPage;
-                    this.render();
-                }
-            });
-        });
+        pagination.appendChild(pageItem);
+      }
     }
 
-    render() {
-        this.renderProducts();
-        this.renderPagination();
-    }
-}
+    
+    window.goToPage = function(page) {
+      const itemsPerPage = document.getElementById('itemsPerPage').value;
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = page * itemsPerPage;
+      const paginatedData = data.records.slice(startIndex, endIndex);
 
+      renderProducts(paginatedData);
+      renderPagination(page, data.pagination.pages);
+    };
 
-const productList = new ProductList();
+    // Initial render of products and pagination
+    renderProducts(data.records.slice(0, 10)); // Show initial 10 products
+    renderPagination(1, data.pagination.pages);
 
-
-window.editProduct = function(id) {
-    window.location.href = `create.html?edit=${id}`;
-};
-
-window.deleteProduct = function(id) {
-    if (confirm('Are you sure you want to delete this product?')) {
-        ProductService.deleteProduct(id);
-        window.location.reload();
-    }
-};
+    // Handle items per page change
+    document.getElementById('itemsPerPage').addEventListener('change', function() {
+      const itemsPerPage = this.value;
+      const paginatedData = data.records.slice(0, itemsPerPage);
+      renderProducts(paginatedData);
+      renderPagination(1, Math.ceil(data.records.length / itemsPerPage));
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
