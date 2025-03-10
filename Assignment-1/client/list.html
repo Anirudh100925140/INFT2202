@@ -27,6 +27,11 @@
         </div>
     </nav>
 
+       <!-- Message Container for Alerts -->
+       <div id="messageContainer" class="container mt-3" style="display: none;">
+        <div class="alert" role="alert"></div>
+    </div>
+
     <!-- Product List Section -->
     <div class="container mt-4">
         <h1 class="text-center ">Our Products</h1>
@@ -44,7 +49,15 @@
             </div>
         </div>
 
-        <table id="product-list" class="table">
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="text-center my-5" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading...</p>
+                </div>
+
+        <table id="product-list" class="table table-striped">
             <thead>
                 <tr>
                     <th>Name</th>

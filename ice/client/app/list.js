@@ -51,26 +51,27 @@ catch(ex) {
 /* 
  * 
  */
-function drawPagination({ page = 1, perPage = 5, pages = 10 }) 
-{
+function drawPagination({ page = 1, perPage = 5, pages = 10 }) {
     const pagination = document.getElementById('pagination');
+    pagination.innerHTML = ''; // Clear existing pagination elements
+
     if (pages > 1) { 
         pagination.classList.remove('d-none');
     }
     const ul = document.createElement("ul");
-    ul.classList.add('pagination')
-    ul.insertAdjacentHTML('beforeend', addPage(page-1, 'Previous', (page == 1) ? 'disabled' : ''))
+    ul.classList.add('pagination');
+    ul.insertAdjacentHTML('beforeend', addPage(page-1, 'Previous', (page == 1) ? 'disabled' : ''));
     for (let i = 1; i <= pages; i++) {
         ul.insertAdjacentHTML('beforeend', addPage(i, i, (i == page) ? 'active' : ''));
     }
-    ul.insertAdjacentHTML('beforeend', addPage(page+1, 'Next', (page == pages) ? 'disabled' : ''))
+    ul.insertAdjacentHTML('beforeend', addPage(page+1, 'Next', (page == pages) ? 'disabled' : ''));
 
     pagination.append(ul);
 
     function addPage(number, text, style) {
       return `<li class="page-item ${style}">
         <a class="page-link" href="./list.html?page=${number}&perPage=${perPage}">${text}</a>
-      </li>`
+      </li>`;
     }
 }
 /* 
