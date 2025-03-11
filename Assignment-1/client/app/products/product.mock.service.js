@@ -1,4 +1,4 @@
-// src/client/app/products/product.mock.service.js
+
 import Product from './product.js';
 
 class ProductService {

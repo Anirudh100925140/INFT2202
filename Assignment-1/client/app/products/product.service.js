@@ -5,16 +5,16 @@ class ProductService {
 
     async getProducts(page = 1, perPage = 5) {
         try {
-            console.log('Fetching from URL:', this.host); // Debug line
+            console.log('Fetching from URL:', this.host); 
             const response = await fetch(this.host);
-            console.log('Raw response:', response); // Debug line
+            console.log('Raw response:', response); 
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
-            console.log('Raw data:', data); // Debug line
+            console.log('Raw data:', data); 
 
             return {
                 products: data.records || [],
@@ -41,12 +41,12 @@ class ProductService {
                 mode: 'cors',
                 body: JSON.stringify({
                     name: product.name,
-                    description: product.description,
+                    description: product.description || null,  
                     price: parseFloat(product.price),
                     stock: parseInt(product.stock)
                 })
             });
-
+    
             const response = await fetch(request);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -57,7 +57,7 @@ class ProductService {
             throw new Error(`Failed to update product: ${error.message}`);
         }
     }
-
+    
     async deleteProduct(id) {
         try {
             const url = `${this.host}/${id}`;
@@ -69,7 +69,7 @@ class ProductService {
                 },
                 mode: 'cors'
             });
-
+    
             const response = await fetch(request);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -80,6 +80,7 @@ class ProductService {
             throw new Error(`Failed to delete product: ${error.message}`);
         }
     }
+    
 }
 
 export default new ProductService();
