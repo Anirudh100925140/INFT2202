@@ -113,7 +113,7 @@ class ProductList {
                 <td>${product.user || 'N/A'}</td>
                 <td>${product.createTime ? new Date(product.createTime * 1000).toLocaleString() : 'N/A'}</td>
                 <td>
-                    ${product.user === 'your student id' ? `
+                    ${product.user === '100925140' ? `
                         <button class="btn btn-warning btn-sm edit-btn" data-id="${product.id}">Update</button>
                         <button class="btn btn-danger btn-sm delete-btn" data-id="${product.id}">Delete</button>
                     ` : ''}
