@@ -1,8 +1,4 @@
-// Adarsh Thekkekulathingal Kuriyachan
-// 03-28-2025
-// Web Development CSS
-// Test 3
-// Index.js
+
 
 // Get DOM elements
 const genreSelector = document.getElementById('genre-selector');

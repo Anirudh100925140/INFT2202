@@ -1,8 +1,4 @@
-// Adarsh Thekkekulathingal Kuriyachan
-// 03-28-2025
-// Web Development CSS
-// Test 3
-// app.js
+
 
 import express from 'express';
 import path from 'path';
