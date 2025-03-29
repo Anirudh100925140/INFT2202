@@ -62,8 +62,14 @@ class ProductService {
     }
 
     async deleteProduct(id) {
+        if (!id) {
+            throw new Error('Product ID is required');
+        }
+
         try {
             const url = `${this.host}/${id}`;
+            console.log(`Attempting to delete product with ID: ${id}`);
+
             const request = new Request(url, {
                 method: 'DELETE',
                 headers: {
@@ -74,12 +80,21 @@ class ProductService {
             });
 
             const response = await fetch(request);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            console.log(`Delete response status: ${response.status}`);
+
+            if (response.status === 404) {
+                throw new Error('Product not found');
             }
-            return response.status === 204 ? null : await response.json();
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `Server error: ${response.status}`);
+            }
+
+            // Return true for successful deletion
+            return response.status === 204;
         } catch (error) {
-            console.error('API Error:', error);
+            console.error('Delete operation failed:', error);
             throw new Error(`Failed to delete product: ${error.message}`);
         }
     }
