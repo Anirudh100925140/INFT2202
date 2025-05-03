@@ -13,27 +13,70 @@
     <!-- Header placeholder -->
     <div id="header-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-4">Welcome to G-LINE AUTO SPA</h1>
-            <p class="lead">Professional Car Cleaning & Detailing Services</p>
-            <a href="BookAppointment.html" class="btn btn-primary btn-lg">Book Now</a>
-        </div>
     <style>
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/hero-car.jpg');
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #232b2d 50%, #1b2326 100%);
+            min-height: 100vh;
+            color: white;
+        }
+    
+        .hero-container {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(10, 28, 34, 0.8)), url('assets/car1.jpg');
             background-size: cover;
             background-position: center;
-            color: white;
             padding: 100px 0;
+            color: white;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        .service-card {
-            transition: transform 0.3s;
+    
+        .service-container {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(10, 28, 34, 0.8)), url('assets/car2.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: white;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        .service-card:hover {
-            transform: translateY(-10px);
+    
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+    
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    
+        .bg-dark {
+            background: linear-gradient(rgba(1, 24, 33, 0.95), rgba(133, 150, 158, 0.95)) !important;
+        }
+    
+        .btn-primary {
+            background-color: #2c5364;
+            border-color: #2c5364;
+        }
+    
+        .btn-primary:hover {
+            background-color: #203a43;
+            border-color: #203a43;
+        }
+    
+        .text-primary {
+            color: #2c5364 !important;
+        }
+    </style>
+    
+    <div class="container hero-container">
+        <h1 class="display-4">Welcome to G-LINE AUTO SPA</h1>
+        <p class="lead">Professional Car Cleaning & Detailing Services</p>
+        <a href="BookAppointment.html" class="btn btn-primary btn-lg">Book Now</a>
+    </div>
+
     </style>
 </head>
 <body>
@@ -51,7 +94,7 @@
 
     <!-- Services Section -->
     <section class="py-5">
-        <div class="container">
+        <div class="container service-container">
             <h2 class="text-center mb-5">Our Services</h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -84,6 +127,17 @@
             </div>
         </div>
     </section>
+    <!-- <style>
+        .service-container {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/car2.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color:grey;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style> -->
 
     <section class="py-5 text-center">
         <div class="container">
