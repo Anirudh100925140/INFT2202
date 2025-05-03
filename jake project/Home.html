@@ -31,7 +31,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
     
-        .service-container {
+        /* .service-container {
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(3, 6, 7, 0.8)), url('assets/car2.jpg');
             background-size: cover;
             background-position: center;
@@ -40,7 +40,7 @@
             border-radius: 10px;
             margin: 20px 0;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
+        } */
     
         .card {
             background: rgba(255, 255, 255, 0.95);
@@ -89,6 +89,106 @@
             margin: 20px 0;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
+        
+        .service-container {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(3, 6, 7, 0.8)), url('assets/car2.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: white;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            color: #2c5364;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            color: #495057;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .services-heading {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .services-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #2c5364;
+        }
+        .whatsapp-float {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+        background-color: #128C7E;
+        color: white;
+        transform: scale(1.1);
+    }
+
+        
+
     </style>
     
     <div class="container hero-container">
@@ -119,7 +219,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card service-card">
-                        <img src="assets/exterior-wash.jpg" class="card-img-top" alt="Exterior Washing">
+                        <img src="assets/cleaning(exterior).jpg" class="card-img-top" alt="Exterior Washing">
                         <div class="card-body">
                             <h5 class="card-title">Exterior Washing</h5>
                             <p class="card-text">Complete exterior cleaning with premium products for a showroom finish.</p>
@@ -128,7 +228,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card service-card">
-                        <img src="assets/interior-detail.jpg" class="card-img-top" alt="Interior Detailing">
+                        <img src="assets/images interior.jpeg" class="card-img-top" alt="Interior Detailing">
                         <div class="card-body">
                             <h5 class="card-title">Interior Detailing</h5>
                             <p class="card-text">Deep cleaning of seats, carpets, and all interior surfaces.</p>
@@ -137,7 +237,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card service-card">
-                        <img src="assets/premium-detail.jpg" class="card-img-top" alt="Premium Detailing">
+                        <img src="assets/premium.jpg" class="card-img-top" alt="Premium Detailing">
                         <div class="card-body">
                             <h5 class="card-title">Premium Detailing</h5>
                             <p class="card-text">Complete interior and exterior detailing with paint protection.</p>
@@ -206,6 +306,11 @@
             </div>
         </div>
     </section>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/12898862658" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     
     <!-- Footer placeholder -->
